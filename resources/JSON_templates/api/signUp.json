@@ -1,0 +1,17 @@
+{
+  "email":"my_email@example.com",
+  "firstName":"New",
+  "lastName":"User",
+  "mobile":"12345678",
+  "password":"mypassword",
+  "phone":"12345678",
+  "shopName":"MyShop",
+  "address":"My full address",
+  "gpsLocation":{
+    "lat":XX.XXXXXXXXXXXXX,
+    "lng":XX.XXXXXXXXXXXXX
+  },
+  "title":"Main Warehouse",
+  "dispatcherLocationCity":"Riyadh",
+  "dispatcherLocationCountry":"Saudi Arabia"
+}
