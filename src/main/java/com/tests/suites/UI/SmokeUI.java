@@ -11,6 +11,7 @@ import com.tests.ui.orderDetails.LocOD;
 import com.tests.ui.orderDetails.MetOD;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -53,13 +54,16 @@ public class SmokeUI {
         synchronized (driver) {
             driver.wait(5000);
         }
-        driver.quit();
+        //driver.quit();
     }
 
     @Test
     public void posTestLogin(){
         String uiURL = "#/login";
         driver.get(CP.URL + uiURL);
+
+        Assert.assertEquals(driver.getTitle(),loginLocators.loginPageTitle);
+        //Assert.assertTrue();
 
     }
 }
