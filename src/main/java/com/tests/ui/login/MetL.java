@@ -39,7 +39,17 @@ public class MetL {
             driver.findElement(By.xpath(loginLocators.loginEmailField)).clear();
             driver.findElement(By.xpath(loginLocators.loginEmailField)).sendKeys(s);
             driver.findElement(By.xpath(loginLocators.loginSubmitButt)).click();
-            Assert.assertTrue(driver.findElement(By.xpath(loginLocators.loginEmailField)).getText().equals(s));
+            if (driver.findElement(By.xpath(loginLocators.loginEmailField)).getText().
+                    equals(s)) System.out.println("Seems ok: " + s);
+            else System.out.println("Error: " + s);
+            synchronized (driver){
+                try {
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
 
     }
