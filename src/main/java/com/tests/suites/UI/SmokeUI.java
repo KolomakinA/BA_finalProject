@@ -51,7 +51,7 @@ public class SmokeUI {
         driver.quit();
     }
 
-    public void getloginPage(){
+    public void getLoginPage(){
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -59,11 +59,11 @@ public class SmokeUI {
         driver.get(CP.URL + uiURL);
     }
 
+    //-----------------------------------------------------Here we go
 
     @Test
     public void loginPageIsLoadedCorrectly(){
-        getloginPage();
-
+        getLoginPage();
         Assert.assertEquals(driver.getTitle(),loginLocators.loginPageTitle);//checking page title
         Assert.assertEquals(loginMethods.findElement(loginLocators.loginEmailHint,driver).getText(),"الأيميل");//checking the default language
         Assert.assertTrue(loginMethods.findElement(loginLocators.loginEnSwitch,driver).isDisplayed());//checking that En button is present
@@ -74,7 +74,7 @@ public class SmokeUI {
 
     @Test
     public void loginSwitchToEn(){
-        getloginPage();
+        getLoginPage();
         loginMethods.switchToEn(driver);
         Assert.assertEquals(loginMethods.findElement(loginLocators.loginEmailHint,driver).getText(),"Email");//switch to En was successful
         Assert.assertTrue(loginMethods.findElement(loginLocators.loginEmailField,driver).isDisplayed());
@@ -84,8 +84,8 @@ public class SmokeUI {
     }
 
     @Test
-    public void loginPerformloginEn(){
-        getloginPage();
+    public void loginPerformLoginEn(){
+        getLoginPage();
         loginMethods.switchToEn(driver);
         loginMethods.performLogin(driver,loginLocators);
         Assert.assertEquals(dispatcherDashboardMethods.
@@ -94,8 +94,8 @@ public class SmokeUI {
     }
 
     @Test
-    public void loginPerformloginAr(){
-        getloginPage();
+    public void loginPerformLoginAr(){
+        getLoginPage();
         loginMethods.performLogin(driver,loginLocators);
         Assert.assertEquals(dispatcherDashboardMethods.
                 findElement(dispatcherDashboardLocators.dashboardCurrentOrders,driver).getText(),

@@ -4,6 +4,9 @@ import com.common.CP;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.util.ArrayList;
 
 /**
  * Created by kolom on 16.03.2017.
@@ -29,6 +32,16 @@ public class MetL {
         driver.findElement(By.xpath(loginLocators.loginEmailField)).sendKeys(CP.NAME);
         driver.findElement(By.xpath(loginLocators.loginPassField)).sendKeys(CP.PASS);
         driver.findElement(By.xpath(loginLocators.loginSubmitButt)).click();
+    }
+
+    public void performNegativeLogin(WebDriver driver, LocL loginLocators, ArrayList<String> badEmails){
+        for (String s : badEmails) {
+            driver.findElement(By.xpath(loginLocators.loginEmailField)).clear();
+            driver.findElement(By.xpath(loginLocators.loginEmailField)).sendKeys(s);
+            driver.findElement(By.xpath(loginLocators.loginSubmitButt)).click();
+            Assert.assertTrue(driver.findElement(By.xpath(loginLocators.loginEmailField)).getText().equals(s));
+        }
+
     }
 
 }
