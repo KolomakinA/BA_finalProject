@@ -10,5 +10,7 @@ import org.openqa.selenium.WebElement;
 public class MetDD {
     private WebDriver driver;
     public MetDD (WebDriver driver){this.driver=driver;}
-    public WebElement findElement(String s){return  driver.findElement(By.xpath(s));}
+    public WebElement findElement(String s, WebDriver driver){
+        return  driver.findElement(By.xpath(s));
+    }
 }

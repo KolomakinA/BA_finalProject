@@ -5,4 +5,9 @@ package com.tests.ui.login;
  */
 public class LocL {
     public String loginPageTitle = "Delivery System";
+    public String loginEnSwitch = "//*[@id=\"app\"]/div/div[2]/div[1]/a[1]";
+    public String loginEmailHint = "//div[@class='form-group']/label";
+    public String loginEmailField = "//div[@class='col-sm-8']/input[@name='email']";
+    public String loginPassField = "//div[@class='col-sm-8']/input[@name='password']";
+    public String loginSubmitButt = "//div[@class='col-sm-8']/button[@type='submit']";
 }
