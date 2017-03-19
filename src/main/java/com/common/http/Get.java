@@ -13,25 +13,10 @@ import java.io.IOException;
  */
 public class Get {
     private String url;
-
-    public Get() {
-    }
-
-    public Get(String url) {
-        this.url=url;
-    }
-
     public String httpGet (String url) throws IOException {
         try {
-            return Request.Get(url).execute().returnContent().toString();
-        }
-        catch (org.apache.http.client.HttpResponseException e){
-            return "Http code " + e.getStatusCode() + " : " + e.getMessage();
-        }
-    }
-    public String httpGet () throws IOException {
-        try {
-            return Request.Get(url).execute().returnContent().toString();
+            return Request.Get(url).addHeader("Content-Type","application/json").
+                    addHeader("Accept","application/json").execute().returnContent().toString();
         }
         catch (org.apache.http.client.HttpResponseException e){
             return "Http code " + e.getStatusCode() + " : " + e.getMessage();

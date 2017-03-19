@@ -10,11 +10,14 @@ public class CP {
     public static final String PASS = "1234567";
     //-----------------------------User properties received after login
     public static String AUTHTOKEN;
-    public static String ttl;
+    public static long ttl;
     public static String created;
     public static String userId;
     public static String language;
     public static String role;
-    public static String lastLogin;
+    public static long lastLogin;
+    public static String orderID;
+    public static String orderCreatedAt;
+
     //------------------------------------------------------------------
 }

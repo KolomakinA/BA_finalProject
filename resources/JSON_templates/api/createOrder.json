@@ -1,24 +1,24 @@
 {
   "order": {
-    "deliveryTime": 1469112780000,
+    "deliveryTime": %deliveryTime%,
     "deliveryPoint": "Olaya St, As Sulimaniyah, Riyadh 12241, Saudi Arabia",
     "expectedPickUpTime": {
-      "startTime": 1469088000000,
-      "endTime": 1469098800000
+      "startTime": %pickUpStartTime%,
+      "endTime": %pickUpEndTime%
     },
     "cashOnDelivery": true,
-    "cashOnDeliveryAmount": 100,
-    "orderCreatedTime": 1469091069499,
+    "cashOnDeliveryAmount": %cashOnDeliveryAmount%,
+    "orderCreatedTime": %orderCreatedTime%,
     "vehicleType": 1
   },
   "items": [{
     "packingList": "my_items",
-    "pickupPointId": "578f5957ca705a12009d62e3"
+    "pickupPointId": "%pickupPointId%"
   }],
   "recipient":{
-    "firstName": "Name",
-    "lastName": "Surname",
-    "mobile": "23456789",
+    "firstName": "%rcpName%",
+    "lastName": "%rcpLName%",
+    "mobile": "%rcpMobile%",
     "deliveryPoint": "9096 Al Amir Abdullah Ibn Jalawi Ibn Turki, Al Murabba, Riyadh 12631 2369, Saudi Arabia",
     "gpsLocation": {
       "lat": 2.651258939524155,

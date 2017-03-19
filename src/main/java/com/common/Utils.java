@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Utils {
@@ -24,5 +26,9 @@ public class Utils {
 
     public String readFileStr(String path) throws IOException{
         return new String(Files.readAllBytes(Paths.get(path)));
+    }
+
+    public long getCurrentTime(){
+        return new Timestamp(System.currentTimeMillis()).getTime();
     }
 }

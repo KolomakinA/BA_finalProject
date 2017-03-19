@@ -2,15 +2,13 @@ package com.tests.suites.API;
 
 import com.common.CP;
 import com.common.Utils;
-import com.common.http.Get;
-import com.common.http.Post;
+import com.tests.api.CreateOrder;
 import com.tests.api.SignIn;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
+import java.sql.Timestamp;
 
 
 /**
@@ -54,14 +52,43 @@ public class SmokeApi {
 //        }
 //    }
 //}
-    SignIn signIn;
+    private SignIn signIn;
+    private CreateOrder createOrder;
+
     @BeforeSuite
     public void prepare(){
         signIn = new SignIn();
+        createOrder = new CreateOrder();
+    }
+
+    @Test
+    public void logInWrongPass(){
+        String result = signIn.signIn(CP.NAME,"1234657");
+        Assert.assertEquals(result, "Http code 401 : Unauthorized");
+    }
+
+    @Test
+    public void logInWrongMail(){
+        String result = signIn.signIn("test@eample.com",CP.PASS);
+        Assert.assertEquals(result, "Http code 401 : Unauthorized");
     }
 
     @Test
     public void logIn(){
-        signIn.signIn();
+        String result = signIn.signIn(CP.NAME,CP.PASS);
+        Assert.assertEquals(result, "Login successful");
+    }
+
+    @Test
+    public void userRole(){
+        String result = signIn.signIn(CP.NAME,CP.PASS);
+        Assert.assertEquals(CP.role, "dispatcher");
+    }
+
+    @Test
+    public void createOrder(){
+        signIn.signIn(CP.NAME,CP.PASS);
+        String result = createOrder.createOrder(CP.AUTHTOKEN,CP.userId);
+        Assert.assertEquals(result, "Order created successfully");
     }
 }
