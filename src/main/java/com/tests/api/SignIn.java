@@ -11,17 +11,26 @@ import java.io.IOException;
  * Created by kolom on 10.03.2017.
  */
 public class SignIn {
-    Utils utils = new Utils();
-    String resURI = "api/Dispatchers/login";
-    Post post = new Post();
+    private Utils utils = new Utils();
+    private Post post = new Post();
 
-    public void signIn() throws IOException {
+    public void signIn(){
         String json = "";
-        json = utils.readFileStr("resources\\JSON_templates\\api\\logIn.json");
+        try {
+            json = utils.readFileStr("resources\\JSON_templates\\api\\logIn.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         json = json.replace("%NAME%", CP.NAME);
         json = json.replace("%PASS%", CP.PASS);
 
-        String response = post.httpPost(CP.APIURL+resURI,json);
+        String resURI = "api/Dispatchers/login";
+        String response = null;
+        try {
+            response = post.httpPost(CP.APIURL + resURI, json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         JSONObject jo = null;
 
         if (response.equals("Http code 401 : Unauthorized")){
@@ -31,7 +40,7 @@ public class SignIn {
             jo = new JSONObject(response);//saving to a json object the result of our post request
         }
 
-//        if (jo.opt("error") != null) {//verification that login was sucessfull
+//        if (jo.opt("error") != null) {//verification that login was successful
 //            System.out.println(jo.getJSONObject("error").getString("message"));
 //        } else {
             CP.AUTHTOKEN = jo.getString("id");

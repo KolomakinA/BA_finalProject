@@ -62,10 +62,6 @@ public class SmokeApi {
 
     @Test
     public void logIn(){
-        try {
-            signIn.signIn();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        signIn.signIn();
     }
 }
