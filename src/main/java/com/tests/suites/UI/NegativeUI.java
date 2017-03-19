@@ -67,7 +67,7 @@ public class NegativeUI {
     public void negativeLogin() throws IOException {
         ArrayList<String> badStrings;
         Utils u = new Utils();
-        badStrings = u.readFile("resources\\NegativeStrings\\strings.txt");
+        badStrings = u.readFileAR("resources\\NegativeStrings\\strings.txt");
         getLoginPage();
         loginMethods.switchToEn(driver);
         loginMethods.performNegativeLogin(driver,loginLocators,badStrings);

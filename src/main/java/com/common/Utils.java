@@ -13,12 +13,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utils {
-    public ArrayList<String> readFile(String path) throws IOException {
+    public ArrayList<String> readFileAR(String path) throws IOException {
         ArrayList<String> list = new ArrayList<String>();
         Scanner s = new Scanner(new File(path));
         while (s.hasNext()){
             list.add(s.next());
         }
         return list;
+    }
+
+    public String readFileStr(String path) throws IOException{
+        return new String(Files.readAllBytes(Paths.get(path)));
     }
 }

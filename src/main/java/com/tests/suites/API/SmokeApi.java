@@ -4,6 +4,7 @@ import com.common.CP;
 import com.common.Utils;
 import com.common.http.Get;
 import com.common.http.Post;
+import com.tests.api.SignIn;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -53,4 +54,18 @@ public class SmokeApi {
 //        }
 //    }
 //}
+    SignIn signIn;
+    @BeforeSuite
+    public void prepare(){
+        signIn = new SignIn();
+    }
+
+    @Test
+    public void logIn(){
+        try {
+            signIn.signIn();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

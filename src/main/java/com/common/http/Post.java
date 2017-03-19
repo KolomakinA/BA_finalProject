@@ -6,6 +6,7 @@ package com.common.http;
 import org.apache.http.client.fluent.Request;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 
@@ -27,7 +28,8 @@ public class Post {
     public String httpPost(String url, String jsonBody) throws IOException {
         try {
             return Request.Post(url).addHeader("Content-Type","application/json").
-                    bodyString(jsonBody, APPLICATION_JSON).execute().returnContent().toString();
+                    addHeader("Accept","application/json").bodyString(jsonBody, APPLICATION_JSON).
+                    execute().returnContent().toString();
         }
         catch (org.apache.http.client.HttpResponseException e){
             return "Http code " + e.getStatusCode() + " : " + e.getMessage();
@@ -36,7 +38,8 @@ public class Post {
     public String httpPost() throws IOException {
         try {
             return Request.Post(url).addHeader("Content-Type","application/json").
-                    bodyString(jsonBody, APPLICATION_JSON).execute().returnContent().toString();
+                    addHeader("Accept","application/json").bodyString(jsonBody, APPLICATION_JSON).
+                    execute().returnContent().toString();
         }
         catch (org.apache.http.client.HttpResponseException e){
             return "Http code " + e.getStatusCode() + " : " + e.getMessage();
