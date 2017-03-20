@@ -48,7 +48,7 @@ public class SmokeUI {
         synchronized (driver) {
             driver.wait(5000);
         }
-        driver.quit();
+        //driver.quit();
     }
 
     public void getLoginPage(){

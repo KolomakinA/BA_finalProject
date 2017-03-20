@@ -45,7 +45,9 @@ public class CreateOrder {
 
         JSONObject jo = null;
         if (response != null) {
-            jo = new JSONObject(response);//saving to a json object the result of our post request
+            if (response.charAt(0) == '{') {
+                jo = new JSONObject(response);//saving to a json object the result of our post request
+            } else return response;
         } else return "Error: No response received";
         CP.orderID = jo.optJSONObject("result").optJSONObject("recipient").optString("id");
         CP.orderCreatedAt = jo.optJSONObject("result").optJSONObject("recipient").optString("createdAt");
@@ -72,10 +74,11 @@ public class CreateOrder {
             }
         } else return "Error: No response received";
         if (ja.length() == 0) return "Error: no pickup point created";
-        for (int i = ja.length()-1; i > 0; i--) {
-            if (ja.getJSONObject(i).optString("valid").equals("false"));
-            else return ja.getJSONObject(i).getString("id");
-        }
-        return "Error: there are no valid pickup points";
+//        for (int i = ja.length()-1; i == 0; i--) {
+//            if (ja.getJSONObject(i).optString("valid").equals("false")) continue;
+//            else return ja.getJSONObject(i).getString("id");
+//        }
+//        return "Error: there are no valid pickup points";//some strange behavior
+        return ja.getJSONObject(ja.length()-1).getString("id");
     }
 }

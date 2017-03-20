@@ -4,6 +4,7 @@ import com.common.CP;
 import com.common.Utils;
 import com.tests.api.CreateOrder;
 import com.tests.api.SignIn;
+import com.tests.api.ViewOrders;
 import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -54,11 +55,13 @@ public class SmokeApi {
 //}
     private SignIn signIn;
     private CreateOrder createOrder;
+    private ViewOrders viewOrders;
 
     @BeforeSuite
     public void prepare(){
         signIn = new SignIn();
         createOrder = new CreateOrder();
+        viewOrders = new ViewOrders();
     }
 
     @Test
@@ -90,5 +93,18 @@ public class SmokeApi {
         signIn.signIn(CP.NAME,CP.PASS);
         String result = createOrder.createOrder(CP.AUTHTOKEN,CP.userId);
         Assert.assertEquals(result, "Order created successfully");
+    }
+
+    @Test
+    public void viewCreatedOrderDetails(){
+        signIn.signIn(CP.NAME,CP.PASS);
+        createOrder.createOrder(CP.AUTHTOKEN,CP.userId);
+        String createdOrderID = viewOrders.getLatestNewOrderID(CP.userId,CP.AUTHTOKEN);
+        if (createdOrderID.contains("Error")) {
+            System.out.println("some error appear");
+            System.exit(1);
+        }
+        System.out.println(viewOrders.getOrderDetails(CP.userId,CP.AUTHTOKEN,createdOrderID));
+
     }
 }
