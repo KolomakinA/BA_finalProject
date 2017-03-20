@@ -102,5 +102,45 @@ public class SmokeUI {
                 "الطلبات الحالية");
     }
 
+    @Test
+    public void dispDashboardEnIsDisplayed(){
+        getLoginPage();
+        loginMethods.switchToEn(driver);
+        loginMethods.performLogin(driver,loginLocators);
+        Assert.assertTrue(dispatcherDashboardMethods.findElement(dispatcherDashboardLocators.dashboardEn,driver).isDisplayed());
+    }
+
+    @Test
+    public void dispDashboardArIsDisplayed(){
+        getLoginPage();
+        loginMethods.switchToEn(driver);
+        loginMethods.performLogin(driver,loginLocators);
+        Assert.assertTrue(dispatcherDashboardMethods.findElement(dispatcherDashboardLocators.dashboardAr,driver).isDisplayed());
+    }
+
+    @Test
+    public void dispDashboardLogoutIsDisplayed(){
+        getLoginPage();
+        loginMethods.switchToEn(driver);
+        loginMethods.performLogin(driver,loginLocators);
+        Assert.assertTrue(dispatcherDashboardMethods.findElement(dispatcherDashboardLocators.dashboardLogout,driver).isDisplayed());
+    }
+
+    @Test
+    public void dispDashboardCreateOrderIsDisplayed(){
+        getLoginPage();
+        loginMethods.switchToEn(driver);
+        loginMethods.performLogin(driver,loginLocators);
+        Assert.assertTrue(dispatcherDashboardMethods.findElement(dispatcherDashboardLocators.dashboardNewOrder,driver).isDisplayed());
+    }
+
+    @Test
+    public void dispDashboardCreateOrderTextIsCorrect(){
+        getLoginPage();
+        loginMethods.switchToEn(driver);
+        loginMethods.performLogin(driver,loginLocators);
+        Assert.assertEquals(dispatcherDashboardMethods.findElement(dispatcherDashboardLocators.dashboardNewOrder + "/text()[2]",driver),"Create New Order");
+    }
+
 
 }
