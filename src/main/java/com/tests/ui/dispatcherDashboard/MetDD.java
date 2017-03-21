@@ -13,4 +13,8 @@ public class MetDD {
     public WebElement findElement(String s, WebDriver driver){
         return  driver.findElement(By.xpath(s));
     }
+
+    public void createNewOrder (WebDriver driver, LocDD dispatcherLocators){
+        findElement(dispatcherLocators.dashboardNewOrder,driver).click();
+    }
 }

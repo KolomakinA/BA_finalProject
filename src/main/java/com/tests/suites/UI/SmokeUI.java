@@ -7,8 +7,6 @@ import com.tests.ui.dispatcherDashboard.LocDD;
 import com.tests.ui.dispatcherDashboard.MetDD;
 import com.tests.ui.login.LocL;
 import com.tests.ui.login.MetL;
-import com.tests.ui.orderDetails.LocOD;
-import com.tests.ui.orderDetails.MetOD;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -23,11 +21,9 @@ public class SmokeUI {
     private LocCO createOrdersLocators;
     private LocDD dispatcherDashboardLocators;
     private LocL loginLocators;
-    private LocOD orderDetailsLocators;
     private MetCO createOrdersMethods;
     private MetDD dispatcherDashboardMethods;
     private MetL loginMethods;
-    private MetOD orderDetailsMethods;
     private WebDriver driver;
 
     @BeforeSuite
@@ -35,12 +31,10 @@ public class SmokeUI {
         createOrdersLocators = new LocCO();
         dispatcherDashboardLocators = new LocDD();
         loginLocators = new LocL();
-        orderDetailsLocators = new LocOD();
 
         createOrdersMethods = new MetCO(driver);
         dispatcherDashboardMethods = new MetDD(driver);
         loginMethods = new MetL(driver);
-        orderDetailsMethods = new MetOD(driver);
     }
 
     @AfterMethod
@@ -171,6 +165,38 @@ public class SmokeUI {
         loginMethods.switchToEn(driver);
         loginMethods.performLogin(driver,loginLocators);
         Assert.assertEquals(dispatcherDashboardMethods.findElement(dispatcherDashboardLocators.dashboardNewOrder,driver).getText(),"+ Create New Order");
+    }
+
+    @Test
+    public void createNewOrderPageIsLoaded ()throws InterruptedException{
+        getLoginPage();
+        loginMethods.switchToEn(driver);
+        loginMethods.performLogin(driver,loginLocators);
+        Thread.sleep(10000);
+        dispatcherDashboardMethods.createNewOrder(driver,dispatcherDashboardLocators);
+        Thread.sleep(2000);
+        Assert.assertEquals(createOrdersMethods.
+                findElement(createOrdersLocators.newOrderHeader,driver).getText(),"New Order");
+    }
+
+    @Test
+    public void createNewOrder() throws InterruptedException {
+        getLoginPage();
+        loginMethods.switchToEn(driver);
+        loginMethods.performLogin(driver,loginLocators);
+        Thread.sleep(5000);
+        dispatcherDashboardMethods.createNewOrder(driver,dispatcherDashboardLocators);
+        Thread.sleep(2000);
+        if (createOrdersMethods.fillInPackingList
+                (driver,createOrdersLocators,"My new package"));
+        else System.out.println("Error filling in Packing list");
+        createOrdersMethods.fillInOrderDate
+                (driver,createOrdersLocators,"03/31/17");
+        createOrdersMethods.findElement(createOrdersLocators.newOrderDate,driver).clear();
+        if (createOrdersMethods.fillInOrderDate
+                (driver,createOrdersLocators,"03/31/17"));
+        Thread.sleep(5000);
+
     }
 
 
