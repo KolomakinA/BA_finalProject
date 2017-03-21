@@ -46,9 +46,9 @@ public class SmokeUI {
     @AfterMethod
     public void tearDown() throws InterruptedException {
         synchronized (driver) {
-            driver.wait(5000);
+            driver.wait(1);
         }
-        //driver.quit();
+        driver.quit();
     }
 
     public void getLoginPage(){
@@ -62,14 +62,45 @@ public class SmokeUI {
     //-----------------------------------------------------Here we go
 
     @Test
-    public void loginPageIsLoadedCorrectly(){
+    public void loginComparingTitle(){
         getLoginPage();
         Assert.assertEquals(driver.getTitle(),loginLocators.loginPageTitle);//checking page title
+    }
+
+    @Test
+    public void loginComparingEmailFieldHintAr(){
+        getLoginPage();
         Assert.assertEquals(loginMethods.findElement(loginLocators.loginEmailHint,driver).getText(),"الأيميل");//checking the default language
-        Assert.assertTrue(loginMethods.findElement(loginLocators.loginEnSwitch,driver).isDisplayed());//checking that En button is present
-        Assert.assertTrue(loginMethods.findElement(loginLocators.loginEmailField,driver).isDisplayed());
-        Assert.assertTrue(loginMethods.findElement(loginLocators.loginPassField,driver).isDisplayed());
-        Assert.assertTrue(loginMethods.findElement(loginLocators.loginSubmitButt,driver).isDisplayed());
+    }
+
+    @Test
+    public void loginComparingPasswordFieldHintAr() {
+        getLoginPage();
+        Assert.assertEquals(loginMethods.findElement(loginLocators.loginPassHint,driver).getText(),"كلمة المرور");
+    }
+
+    @Test
+    public void loginCheckingThatEnSwitchDisplayed () {
+        getLoginPage();
+        Assert.assertTrue(loginMethods.findElement(loginLocators.loginEnSwitch, driver).isDisplayed());
+    }
+
+    @Test
+    public void loginCheckingThatEmailFieldIsDisplayed(){
+        getLoginPage();
+        Assert.assertTrue(loginMethods.findElement(loginLocators.loginEmailField, driver).isDisplayed());
+    }
+
+    @Test
+    public void loginCheckingThatPasswordFieldIsDisplayed(){
+        getLoginPage();
+        Assert.assertTrue(loginMethods.findElement(loginLocators.loginPassField, driver).isDisplayed());
+    }
+
+    @Test
+    public void loginCheckingThatSubmitButtonIsDisplayed(){
+        getLoginPage();
+        Assert.assertTrue(loginMethods.findElement(loginLocators.loginSubmitButt, driver).isDisplayed());
     }
 
     @Test
@@ -139,7 +170,7 @@ public class SmokeUI {
         getLoginPage();
         loginMethods.switchToEn(driver);
         loginMethods.performLogin(driver,loginLocators);
-        Assert.assertEquals(dispatcherDashboardMethods.findElement(dispatcherDashboardLocators.dashboardNewOrder + "/text()[2]",driver),"Create New Order");
+        Assert.assertEquals(dispatcherDashboardMethods.findElement(dispatcherDashboardLocators.dashboardNewOrder,driver).getText(),"+ Create New Order");
     }
 
 

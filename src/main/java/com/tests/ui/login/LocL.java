@@ -10,4 +10,5 @@ public class LocL {
     public String loginEmailField = "//div[@class='col-sm-8']/input[@name='email']";
     public String loginPassField = "//div[@class='col-sm-8']/input[@name='password']";
     public String loginSubmitButt = "//div[@class='col-sm-8']/button[@type='submit']";
+    public String loginPassHint = "//label[@for='formHorizontalPassword']";
 }
