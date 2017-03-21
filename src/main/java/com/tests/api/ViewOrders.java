@@ -45,7 +45,8 @@ public class ViewOrders {
     }
 
     public String getOrderDetails(String uID, String authToken, String orderID){
-        String resURI = "api/Dispatchers/" + orderID + "/orders/" + uID + "?access_token=" + authToken;
+//        String resURI = "api/Dispatchers/" + orderID + "/orders/" + uID + "?access_token=" + authToken;
+        String resURI = "api/Dispatchers/" + CP.orderID + "/orders/" + uID + "?access_token=" + authToken;
         String response = null;
 
         try {
